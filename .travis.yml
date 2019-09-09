@@ -11,10 +11,10 @@ script:
   - docker run -e CI=true albertojnk/react-test npm test
 
 after_success:
-  - docker build -t albertojnk/multi-client -f ./client
-  - docker build -t albertojnk/multi-nginx -f ./nginx
-  - docker build -t albertojnk/multi-server -f ./server
-  - docker build -t albertojnk/multi-worker -f ./worker
+  - docker build -t albertojnk/multi-client ./client
+  - docker build -t albertojnk/multi-nginx ./nginx
+  - docker build -t albertojnk/multi-server ./server
+  - docker build -t albertojnk/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push albertojnk/multi-client
   - docker push albertojnk/multi-nginx
